@@ -1,6 +1,6 @@
 # PUPSCHED
 
-This repository contains the code and resources for the **PUP SANJUAN Accreditation Website**, designed to handle file server management for accreditation purposes at **Polytechnic University of the Philippines - San Juan Campus**.
+This repository contains the code and resources for the **PUP SANJUAN SCHEDULING SYSTEM**, designed to handle faculty scheduling management at **Polytechnic University of the Philippines - San Juan Campus**.
 
 ## Table of Contents
 
@@ -15,7 +15,7 @@ This repository contains the code and resources for the **PUP SANJUAN Accreditat
 
 ## Project Overview
 
-The PUPSKED is a Faculty load management system design to ease designatiom of (Room, Section, Date & Time, and Course/Subject with credit monitoring) 
+The PUPSCHED is a Faculty load management system design to ease designatiom of (Room, Section, Date & Time, and Course/Subject with credit monitoring) 
 
 ## Technologies Used
 
