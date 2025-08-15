@@ -15,7 +15,7 @@ This repository contains the code and resources for the **PUP SANJUAN Accreditat
 
 ## Project Overview
 
-The PUP SANJUAN Accreditation Website allows seamless file server handling for accreditation documents, making it easier for administrators to manage and submit files efficiently. It ensures that all accreditation files are stored in a centralized location with easy access and secure storage.
+The PUPSKED is a Faculty load management system design to ease designatiom of (Room, Section, Date & Time, and Course/Subject with credit monitoring) 
 
 ## Technologies Used
 
@@ -23,15 +23,14 @@ The PUP SANJUAN Accreditation Website allows seamless file server handling for a
 - **Backend:** Laravel
 - **Database:** PostGres
 - **Authentication:** JWT (JSON Web Token)
-- **File Storage:** Cloudinary / Local File System
+
 
 ## Features
 
-- File upload and download functionality.
 - User authentication for secure access.
-- Search functionality for retrieving specific files.
-- Admin panel for managing user permissions and overseeing file activities.
+- Admin with full CRUD privileges, Faculty with view or read access only. 
 - Easy-to-navigate user interface for both admins and users.
+- Faculty page is fully responsive to most screen devices available.
 
 ## Installation
 
@@ -47,7 +46,7 @@ The PUP SANJUAN Accreditation Website allows seamless file server handling for a
 2. Navigate to the project directory:
 
     ```bash
-    cd PUPCON
+    cd PUPSCHED
     ```
 
 3. Install dependencies for node modules:
@@ -78,6 +77,7 @@ The PUP SANJUAN Accreditation Website allows seamless file server handling for a
 
     ```bash
     DB_USERNAME=your-username (usually postgres)
+    DB_PORT=5432
     ```
 
 8. Migrate the project database:
@@ -101,21 +101,16 @@ The PUP SANJUAN Accreditation Website allows seamless file server handling for a
 11. Start the server for laravel:
 
     ```bash
-    php artisan serve
-    ```
+    composer run dev
 
-12. Start the server for node:
-
-    ```bash
-    npm run dev
     ```
 
 ## Testing
 
 1. Go to `http://localhost:8000` in your browser.
 2. Login with 
-    for Coordinator email: <test@example.com> and password: password@123
-    for Area Designee <keithlee@example.com> and password: password@456
+    for Administrator email: <admin@example.com> and password: password@123
+    for Faculty <testfaculty1@example.com> and password: password@456
 
 ## Team
 
