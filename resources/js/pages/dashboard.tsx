@@ -5,16 +5,25 @@ import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { ChevronLeft, ChevronRight, } from 'lucide-react';
 import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-  DialogClose
+    Dialog,
+    DialogTrigger,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+    DialogFooter,
+    DialogClose
 } from "@/components/ui/dialog"
 import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -42,6 +51,18 @@ export default function Dashboard() {
                 <div className="relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
                     <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
                 </div> */}
+                <div>
+                    <Select>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select Room" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="INTE 123">INTE 123</SelectItem>
+                            <SelectItem value="INTE 456">INTE 456</SelectItem>
+                            <SelectItem value="INTE 789">INTE 789</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
                 <div>
                     <Calendar
                         events={[
@@ -81,18 +102,63 @@ export default function Dashboard() {
                                     {/* Dialog body */}
                                     <DialogContent>
                                         <DialogHeader>
-                                            <DialogTitle>Are you absolutely sure?</DialogTitle>
+                                            <DialogTitle>Add Class</DialogTitle>
                                             <DialogDescription>
-                                                This action cannot be undone. It will permanently delete your account.
+                                                Add class for the [Room] current schedule.
                                             </DialogDescription>
                                         </DialogHeader>
+                                        <form className='flex flex-col gap-3' action="" method="post">
+                                            <Label>Course Code</Label>
+                                            <Select>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="INTE 123" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="INTE 123">INTE 123</SelectItem>
+                                                    <SelectItem value="INTE 456">INTE 456</SelectItem>
+                                                    <SelectItem value="INTE 789">INTE 789</SelectItem>
+                                                </SelectContent>
+                                            </Select>
 
-                                        {/* Footer with action buttons */}
+                                            <Label htmlFor="time-picker">
+                                                Time
+                                            </Label>
+                                            <Input
+                                                type="time"
+                                                step="1"
+                                                defaultValue="10:30"
+                                                className="bg-background appearance-none [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
+                                            />
+
+                                            <Label>Section</Label>
+                                            <Select>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select Section" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="INTE 123">INTE 123</SelectItem>
+                                                    <SelectItem value="INTE 456">INTE 456</SelectItem>
+                                                    <SelectItem value="INTE 789">INTE 789</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+
+                                            <Label>Instructor</Label>
+                                            <Select>
+                                                <SelectTrigger>
+                                                    <SelectValue placeholder="Select Instructor" />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="INTE 123">INTE 123</SelectItem>
+                                                    <SelectItem value="INTE 456">INTE 456</SelectItem>
+                                                    <SelectItem value="INTE 789">INTE 789</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </form>
                                         <DialogFooter>
                                             <DialogClose asChild>
                                                 <Button variant="secondary">Cancel</Button>
                                             </DialogClose>
-                                            <Button variant="destructive">Delete</Button>
+                                            <Button variant="destructive">Submit</Button>
                                         </DialogFooter>
                                     </DialogContent>
                                 </Dialog>
