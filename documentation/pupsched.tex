@@ -1,0 +1,82 @@
+\documentclass[12pt,a4paper]{article}
+
+% ====== PACKAGES ======
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+% ====== COLORS ======
+\definecolor{pupred}{HTML}{A72121}
+
+% ====== SPACING & FONT ======
+\onehalfspacing
+\renewcommand{\familydefault}{\sfdefault} % Sans serif
+
+% ====== TITLE ======
+\title{\textbf{\textcolor{pupred}{PupSched}} \\ Faculty Loading System}
+\author{Project Team \\ Polytechnic University of the Philippines}
+\date{\today}
+
+\begin{document}
+
+% ====== TITLE PAGE ======
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+% ====== TABLE OF CONTENTS ======
+\tableofcontents
+\newpage
+
+% ====== SECTIONS ======
+\section{Abstract}
+PupSched is a faculty loading and scheduling system designed for efficient allocation of teaching loads and classroom resources at the Polytechnic University of the Philippines.
+
+\section{Introduction}
+In this section, describe the motivation, goals, and scope of PupSched.
+
+\section{System Architecture}
+Figure~\ref{fig:arch} shows the high-level architecture.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.85\textwidth]{example-image} % Replace with your diagram file
+    \caption{PupSched System Architecture}
+    \label{fig:arch}
+\end{figure}
+
+\section{Key Features}
+\begin{itemize}
+    \item Automatic faculty load computation
+    \item Conflict-free scheduling
+    \item Integration with PUP databases
+    \item Real-time availability tracking
+\end{itemize}
+
+\section{Technology Stack}
+\begin{table}[h]
+    \centering
+    \begin{tabular}{ll}
+        \toprule
+        \textbf{Component} & \textbf{Technology} \\
+        \midrule
+        Backend & Node.js / Express \\
+        Database & MySQL \\
+        Frontend & React.js \\
+        Authentication & JWT \\
+        Deployment & AWS EC2 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Technology stack used in PupSched}
+    \label{tab:stack}
+\end{table}
+
+\section{Conclusion}
+Summarize the system’s impact and future development plans.
+
+\end{document}
