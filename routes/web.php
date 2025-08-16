@@ -12,10 +12,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return Inertia::render('dashboard');
     })->name('dashboard');
 
-     Route::get('add', function () {
-        return Inertia::render('add');
-    })->name('add');
+    Route::get('export', function () {
+        return Inertia::render('export');
+    })->name('export');
+
+    Route::get('subject', function () {
+        return Inertia::render('subject');
+    })->name('subject');
 });
 
-require __DIR__.'/settings.php';
-require __DIR__.'/auth.php';
+require __DIR__ . '/settings.php';
+require __DIR__ . '/auth.php';

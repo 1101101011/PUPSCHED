@@ -123,21 +123,21 @@ const Calendar = ({
     onChangeView?.(view);
   };
 
-  useHotkeys('m', () => changeView('month'), {
-    enabled: enableHotkeys,
-  });
+  // useHotkeys('m', () => changeView('month'), {
+  //   enabled: enableHotkeys,
+  // });
 
-  useHotkeys('w', () => changeView('week'), {
-    enabled: enableHotkeys,
-  });
+  // useHotkeys('w', () => changeView('week'), {
+  //   enabled: enableHotkeys,
+  // });
 
-  useHotkeys('y', () => changeView('year'), {
-    enabled: enableHotkeys,
-  });
+  // useHotkeys('y', () => changeView('year'), {
+  //   enabled: enableHotkeys,
+  // });
 
-  useHotkeys('d', () => changeView('day'), {
-    enabled: enableHotkeys,
-  });
+  // useHotkeys('d', () => changeView('day'), {
+  //   enabled: enableHotkeys,
+  // });
 
   return (
     <Context.Provider
