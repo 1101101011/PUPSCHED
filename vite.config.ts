@@ -22,4 +22,16 @@ export default defineConfig({
             'ziggy-js': resolve(__dirname, 'vendor/tightenco/ziggy'),
         },
     },
+    server: {
+        host: '0.0.0.0',         // allow access from Docker
+        port: 5173,
+        strictPort: true,         // fail if port is already in use
+        cors: {
+            origin: 'http://127.0.0.1:8000', // "app" = service name in docker-compose
+            credentials: true,
+        },
+        hmr: {
+            host: 'localhost',
+        },
+    },
 });

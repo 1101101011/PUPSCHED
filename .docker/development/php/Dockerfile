@@ -1,42 +1,15 @@
-FROM php:8.4
+FROM php:8.4-cli
 
 #install dependencies
 RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    zip \
-    unzip \
-    openssl
-
-# Install PHP extensions
-RUN docker-php-ext-install \
-    bcmath \
-    pdo \
-    pdo_pgsql \
-    mbstring \
-    exif \
-    pcntl \
-    gd \
-    zip \
-    opcache \
-    mysqli \
-    intl \
-    xml
+    git curl zip unzip libpq-dev libpng-dev \
+    && docker-php-ext-install pdo pdo_pgsql bcmath gd
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Install Node.js and npm
-COPY --from=node:24.3 /usr/local/bin/node /usr/local/bin/node
-
 WORKDIR /app
 
-COPY . /app
+COPY ./ /app
 
-RUN composer install \
-    && npm install \
-    && php artisan key:generate
-
-EXPOSE 8000
-
-CMD composer run dev
+CMD sh -c "composer install && php artisan serve --host=0.0.0.0 --port=8000"

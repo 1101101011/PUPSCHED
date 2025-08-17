@@ -8,10 +8,11 @@ This repository contains the code and resources for the **PUP SANJUAN SCHEDULING
 2. [Technologies Used](#technologies-used)
 3. [Features](#features)
 4. [Installation](#installation)
-5. [Usage](#usage)
-6. [Team](#team)
-7. [Contributing](#contributing)
-8. [License](#license)
+5. [Docker](#docker-installation)
+6. [Usage](#usage)
+7. [Team](#team)
+8. [Contributing](#contributing)
+9. [License](#license)
 
 ## Project Overview
 
@@ -105,12 +106,63 @@ The PUPSCHED is a Faculty load management system design to ease designatiom of (
 
     ```
 
-## Testing
+## Docker Installation
+> [!NOTE]
+> Please ensure you have Docker installed on your machine before proceeding with the Docker installation steps.
 
-1. Go to `http://localhost:8000` in your browser.
-2. Login with 
-    for Administrator email: <admin@example.com> and password: password@123
-    for Faculty <testfaculty1@example.com> and password: password@456
+1. Clone the repository:
+
+    ```bash
+    # Clone with HTTPS
+    git clone https://https://github.com/1101101011/PUPSCHED.git
+    # Clone with SSH
+    git clone git@github.com:1101101011/PUPSCHED.git
+    ```
+
+2. Navigate to the project directory:
+
+    ```bash
+    cd PUPSCHED
+    ```
+
+3. Copy the `.env.example` file and rename it to `.env`:
+
+    ```bash
+    cp .env.example .env
+    ```
+4. Update the `.env` file with your database credentials:
+
+    ```bash
+    DB_HOST=postgres (this is the name of the service in docker-compose)
+    DB_USERNAME=your-username (usually postgres)
+    DB_PORT=5432
+    DB_DATABASE=pupsched
+    DB_PASSWORD=your-password (this is required for the database connection in docker container)
+    ```
+
+5. Build the Docker image with docker-compose:
+
+    ```bash
+    docker-compose build
+    ```
+6. Start the Docker containers:
+
+    ```bash
+    docker-compose up -d
+    ```
+7. Generate the application key:
+
+    ```bash
+    docker exec -it pupsched-development php artisan key:generate
+    ```
+8. Run the migrations and seed the database:
+
+    ```bash
+    docker exec -it pupsched-development php artisan migrate:fresh --seed
+    ```
+9. Access the application in your web browser at `http://127.0.0.1:8000`.
+
+
 
 ## Team
 
