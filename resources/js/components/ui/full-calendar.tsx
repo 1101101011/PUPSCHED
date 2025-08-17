@@ -118,10 +118,10 @@ const Calendar = ({
   const [date, setDate] = useState(defaultDate);
   const [events, setEvents] = useState<CalendarEvent[]>(defaultEvents);
 
-  const changeView = (view: View) => {
-    setView(view);
-    onChangeView?.(view);
-  };
+  // const changeView = (view: View) => {
+  //   setView(view);
+  //   onChangeView?.(view);
+  // };
 
   // useHotkeys('m', () => changeView('month'), {
   //   enabled: enableHotkeys,

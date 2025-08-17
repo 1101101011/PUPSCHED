@@ -80,7 +80,7 @@ export const columns: ColumnDef<Payment>[] = [
     {
         id: 'actions',
         enableHiding: false,
-        cell: ({}) => {
+        cell: () => {
             return (
                 <div className="flex justify-end">
                     <DropdownMenu>
