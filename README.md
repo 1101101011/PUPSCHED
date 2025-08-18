@@ -133,10 +133,11 @@ The PUPSCHED is a Faculty load management system design to ease designatiom of (
 4. Update the `.env` file with your database credentials:
 
     ```bash
-    DB_HOST=postgres (this is the name of the service in docker-compose)
-    DB_USERNAME=your-username (usually postgres)
+    DB_CONNECTION=pgsql
+    DB_HOST=postgresql (this is the name of the service in docker-compose)
     DB_PORT=5432
     DB_DATABASE=pupsched
+    DB_USERNAME=your-username (usually postgres)
     DB_PASSWORD=your-password (this is required for the database connection in docker container)
     ```
 
