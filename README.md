@@ -143,12 +143,12 @@ The PUPSCHED is a Faculty load management system design to ease designatiom of (
 5. Build the Docker image with docker-compose:
 
     ```bash
-    docker-compose build
+    docker compose build
     ```
 6. Start the Docker containers:
 
     ```bash
-    docker-compose up -d
+    docker compose up -d
     ```
 7. Generate the application key:
 
