@@ -153,12 +153,12 @@ The PUPSCHED is a Faculty load management system design to ease designatiom of (
 7. Generate the application key:
 
     ```bash
-    docker exec -it pupsched-development php artisan key:generate
+    docker exec -it pupsched-app php artisan key:generate
     ```
 8. Run the migrations and seed the database:
 
     ```bash
-    docker exec -it pupsched-development php artisan migrate:fresh --seed
+    docker exec -it pupsched-app php artisan migrate:fresh --seed
     ```
 9. Access the application in your web browser at `http://127.0.0.1:8000`.
 
