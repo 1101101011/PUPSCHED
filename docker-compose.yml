@@ -22,7 +22,7 @@ services:
         build:
             context: .docker/development/node
             dockerfile: Dockerfile
-        container_name: pupsched-frontend
+        container_name: pupsched-node
         volumes:
             - ./:/app
         tty: true
