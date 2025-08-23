@@ -183,4 +183,5 @@ The PUPSCHED is a Faculty load management system design to ease designatiom of (
 
 ## License
 
+
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
