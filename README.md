@@ -390,10 +390,10 @@ We welcome contributions from the community! Here's how you can help:
 
 <div align="center">
 
-[![Fork](https://img.shields.io/badge/🍴 Fork Repository-4CAF50?style=for-the-badge)](#)
-[![Issues](https://img.shields.io/badge/🐛 Report Issues-FF5722?style=for-the-badge)](#)
-[![Features](https://img.shields.io/badge/💡 Request Features-2196F3?style=for-the-badge)](#)
-[![Pull Request](https://img.shields.io/badge/🔄 Submit PR-9C27B0?style=for-the-badge)](#)
+[![Fork](https://img.shields.io/badge/🍴 Fork Repository-4CAF50?style=for-the-badge)](https://github.com/1101101011/PUPSCHED/fork)
+[![Issues](https://img.shields.io/badge/🐛 Report Issues-FF5722?style=for-the-badge)](https://github.com/1101101011/PUPSCHED/issues)
+[![Features](https://img.shields.io/badge/💡 Request Features-2196F3?style=for-the-badge)](https://github.com/1101101011/PUPSCHED/issues/new?template=feature_request.md)
+[![Pull Request](https://img.shields.io/badge/🔄 Submit PR-9C27B0?style=for-the-badge)](https://github.com/1101101011/PUPSCHED/pulls)
 
 </div>
 
