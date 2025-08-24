@@ -11,6 +11,37 @@
 \usepackage{titlesec}
 \usepackage{caption}
 \usepackage{fancyhdr}
+\usepackage{tocloft}
+\usepackage{array}     
+\usepackage[table]{xcolor} 
+\usepackage[most]{tcolorbox}
+\usepackage{fontawesome5} % for icons
+
+\tcbset{
+  githubnote/.style={
+    enhanced,
+    colback=blue!5,          % soft background
+    colframe=blue!40,        % border color
+    boxrule=0.8pt,
+    arc=4pt,                 % rounded corners
+    boxsep=8pt,              % internal padding
+    left=10pt, right=10pt,   % horizontal padding
+    top=8pt, bottom=8pt,     % vertical padding
+    fontupper=\sffamily,     % sans-serif text
+    overlay unbroken={%
+      % Icon positioned nicely in the top-left
+      \node[anchor=north west, text=blue!60!black, font=\Large] 
+      at ([xshift=13pt,yshift=-8pt]frame.north west) {\faInfoCircle};
+    },
+    before upper={%
+      % Make space so text doesn’t overlap the icon
+      \hspace*{1.9em}%
+      \textbf{Note} \\[5pt]
+    },
+  }
+}
+
+
 
 % ====== FONTS ======
 \setmainfont[
@@ -25,7 +56,7 @@
   Path = font/Manrope/static/,
   UprightFont = *-Regular.ttf,
   BoldFont    = *-Bold.ttf,
-  ItalicFont  = *-Medium.ttf, % substitute since Manrope has no italics
+  ItalicFont  = *-Medium.ttf, 
   BoldItalicFont = *-SemiBold.ttf
 ]{Manrope}
 
@@ -43,11 +74,11 @@
 \usepackage{geometry}
 \geometry{
   top=1in,
-  bottom=1in,
+  bottom=1.8in,
   left=1in,
   right=1in,
   headsep=20pt,
-  footskip=30pt
+  footskip=50pt
 }
 
 % ====== FIX FANCYHDR WARNING ======
@@ -62,13 +93,42 @@
 % ====== LINE SPACING ======
 \onehalfspacing
 
+
+
+% Optional: spacing tweaks
+\setlength{\cftbeforesecskip}{6pt} % spacing between entries
+\setlength{\cftaftertoctitleskip}{1cm} % spacing after "Table of Contents" title
+
+
+
 % ====== HEADER & FOOTER ======
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\includegraphics[height=15pt]{assets/pupsched_header.png}}
-\fancyhead[R]{\textcolor{darkgray}{\small version 1.0}}
-\fancyfoot[L]{Polytechnic University of the Philippines}
-\fancyfoot[R]{\textcolor{darkgray}{\thepage}}
+
+% Header
+\fancyhead[L]{\raisebox{5pt}{\includegraphics[height=15pt]{assets/pupsched_header.png}}}
+\fancyhead[R]{\raisebox{5pt}{\textcolor{darkgray}{\small v1.0}}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Footer
+\fancyfoot[L]{%
+  \raisebox{-10pt}{% adjust this value to move up/down
+    \parbox[t]{0.5\textwidth}{%
+      {\small  Polytechnic University of the Philippines}\\
+      {\small  Software Technical Documentation}
+    }%
+  }%
+}
+\fancyfoot[R]{\raisebox{-10pt}{{\small \sffamily \textcolor{darkgray}{\thepage}}}}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+% Geometry adjustments
+\setlength{\headsep}{35pt}  % distance from header rule to text
+\setlength{\footskip}{30pt}  % distance from footer rule to text
+
+
 
 % ====== SECTION FORMATTING ======
 \setcounter{secnumdepth}{0}
@@ -131,7 +191,7 @@
     \begin{flushleft}
         \begin{minipage}{\textwidth}
             {\sffamily\itshape\textcolor{gray}{
-            PupSched is a scheduling system designed to help the Polytechnic University of the Philippines 
+            This is a scheduling system designed to help the Polytechnic University of the Philippines 
             optimize and automate faculty workload assignments, ensuring efficiency and fairness in academic scheduling.}}
         \end{minipage}
     \end{flushleft}
@@ -141,10 +201,11 @@
     \noindent\rule{\textwidth}{0.4pt}\\[1.5cm]
     
     % --- Bottom Section ---
-    \begin{minipage}[t]{0.48\textwidth}
+    \begin{minipage}[t]{0.5\textwidth}
         \raggedright
-        {\normalsize \textbf{Polytechnic University of the Philippines}}\\[0.2cm]
-        {\normalsize College of Computer and Information Sciences}\\[1cm]
+        {\normalsize \textbf{Polytechnic University of the Philippines}}\\[0cm]
+        {\normalsize College of Computer and Information Sciences}\\[0cm]
+        {\normalsize Department of Information Technology}\\[1cm]
         
         {\normalsize Assoc. Prof. Noel Gagolinan}\\
         {\normalsize Instructor}\\[0.1cm]
@@ -167,22 +228,77 @@
 
 
 
+
 % ====== DOCUMENT BODY ======
 \begin{document}
 
-\coverpage  % Insert the cover page
 
-\section{Introduction}
-This document provides a brief technical overview of the PupSched project, a faculty scheduling system designed for ease of use and automation.
+\coverpage 
+
+\renewcommand{\contentsname}{\centering\sffamily\Large Table of Contents}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+% Section entries
+\renewcommand{\cftsecfont}{\sffamily\bfseries\color{darkgray}}
+\renewcommand{\cftsecpagefont}{\sffamily\bfseries\color{darkgray}}
+
+% Subsection entries
+\renewcommand{\cftsubsecfont}{\sffamily\color{gray}}
+\renewcommand{\cftsubsecpagefont}{\sffamily\color{gray}}
+
+% Subsubsection entries
+\renewcommand{\cftsubsubsecfont}{\sffamily\color{lightgray}}
+\renewcommand{\cftsubsubsecpagefont}{\sffamily\color{lightgray}}
+
+% Spacing + indentation
+\setlength{\cftbeforesecskip}{8pt}
+\cftsetindents{section}{0em}{2.5em}    
+\cftsetindents{subsection}{2em}{3em}
+\cftsetindents{subsubsection}{4em}{3.5em}
+
+
+\tableofcontents
+\newpage
+
+
+% Intro note
+\begin{tcolorbox}[githubnote]
+This document provides a brief technical overview of the \textbf{PupSched} project, 
+a faculty scheduling system designed for ease of use and automation.
+\end{tcolorbox}
+
+
+
 
 \section{System Overview}
+
 \subsection{Key Features}
-\begin{itemize}
-    \item Automated faculty scheduling
-    \item Centralized database
-    \item Web-based interface
-    \item Notifications and reminders
-\end{itemize}
+
+\begin{tcolorbox}[
+  colback=blue!1,        % soft background
+  colframe=gray!40,      % border color
+  boxrule=0.5pt, 
+  arc=4pt,               % rounded corners
+  boxsep=6pt,            % padding inside the box
+  left=0pt, right=0pt, 
+  top=6pt, bottom=6pt,
+  fontupper=\sffamily,   % sans-serif text
+  title=, 
+  coltitle=blue!70!black,
+  fonttitle=\sffamily\bfseries
+]
+\renewcommand{\arraystretch}{1.5} % row height
+\begin{tabular}{>{\centering\arraybackslash}p{5cm}|>{\centering\arraybackslash}p{10cm}}
+\rowcolor{gray!20} \textbf{Feature} & \textbf{Description} \\
+
+Automated Faculty Scheduling & Automatically generates optimized schedules for faculty members based on availability and constraints. \\
+Centralized Database & Stores all scheduling data in a single, structured repository for consistency and ease of access. \\
+Web-based Interface & Provides a user-friendly, browser-accessible platform for administrators and faculty. \\
+Notifications \& Reminders & Sends alerts for schedule updates, conflicts, or important deadlines. \\
+\end{tabular}
+\end{tcolorbox}
+
+
 
 \subsection{Architecture Diagram}
 \begin{center}
