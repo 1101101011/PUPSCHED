@@ -1,82 +1,214 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[12pt,letterpaper]{article}
 
 % ====== PACKAGES ======
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
+\usepackage{fontspec}
 \usepackage[english]{babel}
 \usepackage{setspace}
-\usepackage{graphicx}
-\usepackage{booktabs}
-\usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{fancyhdr}
+
+% ====== FONTS ======
+\setmainfont[
+  Path = font/Newsreader/static/,
+  UprightFont = *_24pt-Regular.ttf,
+  ItalicFont  = *_24pt-Italic.ttf,
+  BoldFont    = *_24pt-Bold.ttf,
+  BoldItalicFont = *_24pt-BoldItalic.ttf
+]{Newsreader}
+
+\setsansfont[
+  Path = font/Manrope/static/,
+  UprightFont = *-Regular.ttf,
+  BoldFont    = *-Bold.ttf,
+  ItalicFont  = *-Medium.ttf, % substitute since Manrope has no italics
+  BoldItalicFont = *-SemiBold.ttf
+]{Manrope}
+
+\setmonofont[
+  Path = font/JetBrains_Mono/static/,
+  UprightFont = *-Regular.ttf,
+  ItalicFont  = *-Italic.ttf,
+  BoldFont    = *-Bold.ttf,
+  BoldItalicFont = *-BoldItalic.ttf
+]{JetBrainsMono}
+
+
+
+% ====== PAGE GEOMETRY ======
+\usepackage{geometry}
+\geometry{
+  top=1in,
+  bottom=1in,
+  left=1in,
+  right=1in,
+  headsep=20pt,
+  footskip=30pt
+}
+
+% ====== FIX FANCYHDR WARNING ======
+\setlength{\headheight}{20pt}  % must be AFTER geometry
+\addtolength{\topmargin}{-1pt}  % optional fine-tuning
+
 
 % ====== COLORS ======
 \definecolor{pupred}{HTML}{A72121}
+\definecolor{darkgray}{gray}{0.3}
 
-% ====== SPACING & FONT ======
+% ====== LINE SPACING ======
 \onehalfspacing
-\renewcommand{\familydefault}{\sfdefault} % Sans serif
 
-% ====== TITLE ======
-\title{\textbf{\textcolor{pupred}{PupSched}} \\ Faculty FALCOM System}
-\author{Project Team \\ Polytechnic University of the Philippines}
-\date{\today}
+% ====== HEADER & FOOTER ======
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\includegraphics[height=15pt]{assets/pupsched_header.png}}
+\fancyhead[R]{\textcolor{darkgray}{\small version 1.0}}
+\fancyfoot[L]{Polytechnic University of the Philippines}
+\fancyfoot[R]{\textcolor{darkgray}{\thepage}}
 
+% ====== SECTION FORMATTING ======
+\setcounter{secnumdepth}{0}
+
+\titleformat{\section}
+  {\large\bfseries\color{pupred}\sffamily}{}{0pt}{}
+
+\titleformat{\subsection}
+  {\normalsize\bfseries\color{darkgray}\sffamily}{}{0pt}{}
+
+\titlespacing*{\section}{0pt}{1.5ex plus 1ex minus .2ex}{0.8ex}
+\titlespacing*{\subsection}{0pt}{1ex plus .2ex}{0.5ex}
+
+
+% ====== LISTINGS ======
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, switch,
+    var, if, in, while, do, else, case, break, const, let},
+  keywordstyle=\color{pupred}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{blue}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{darkgray}\itshape,
+  stringstyle=\color{blue},
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+  language=JavaScript,
+  basicstyle=\ttfamily\small,
+  rulecolor=\color{gray!50},
+  frame=single,
+  showstringspaces=false,
+  tabsize=2,
+  breaklines=true,
+  framesep=10pt,
+  xleftmargin=5pt,
+  xrightmargin=5pt,
+  captionpos=b,
+  abovecaptionskip=5pt,
+  belowcaptionskip=5pt,
+}
+\captionsetup[lstlisting]{font={it,footnotesize}}
+
+
+% ====== COVER PAGE ======
+\newcommand{\coverpage}{
+\begin{titlepage}
+    % --- Top Section (Logo + Subtitle) ---
+    \centering
+    \vspace*{1cm}
+    \includegraphics[width=0.6\textwidth,keepaspectratio]{assets/pupsched_logo.pdf}\\[0.5cm]
+    {\large\sffamily\itshape System Technical Documentation}\\[6cm]
+    
+    % --- Overview (left aligned, above divider) ---
+    \begin{flushleft}
+        \begin{minipage}{\textwidth}
+            {\sffamily\itshape\textcolor{gray}{
+            PupSched is a scheduling system designed to help the Polytechnic University of the Philippines 
+            optimize and automate faculty workload assignments, ensuring efficiency and fairness in academic scheduling.}}
+        \end{minipage}
+    \end{flushleft}
+    
+    % --- Divider ---
+    \vspace{1.5cm}
+    \noindent\rule{\textwidth}{0.4pt}\\[1.5cm]
+    
+    % --- Bottom Section ---
+    \begin{minipage}[t]{0.48\textwidth}
+        \raggedright
+        {\normalsize \textbf{Polytechnic University of the Philippines}}\\[0.2cm]
+        {\normalsize College of Computer and Information Sciences}\\[1cm]
+        
+        {\normalsize Assoc. Prof. Noel Gagolinan}\\
+        {\normalsize Instructor}\\[0.1cm]
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \raggedleft
+        {\normalsize Justine Lloyd Bautista}\\
+        {\normalsize Mark Jason Fulguerinas}\\
+        {\normalsize Charles Ezra Ilarde}\\
+        {\normalsize Regie San Juan}\\
+        {\normalsize Jesse Mari Mirabel}\\
+    \end{minipage}
+    
+    \vfill
+    \centering
+    {\normalsize \today}
+\end{titlepage}
+}
+
+
+
+% ====== DOCUMENT BODY ======
 \begin{document}
 
-% ====== TITLE PAGE ======
-\maketitle
-\thispagestyle{empty}
-\newpage
-
-% ====== TABLE OF CONTENTS ======
-\tableofcontents
-\newpage
-
-% ====== SECTIONS ======
-\section{Abstract}
-PupSched is a faculty loading and scheduling system designed for efficient allocation of teaching loads and classroom resources at the Polytechnic University of the Philippines.
+\coverpage  % Insert the cover page
 
 \section{Introduction}
-In this section, describe the motivation, goals, and scope of PupSched.
+This document provides a brief technical overview of the PupSched project, a faculty scheduling system designed for ease of use and automation.
 
-\section{System Architecture}
-Figure~\ref{fig:arch} shows the high-level architecture.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.85\textwidth]{example-image} % Replace with your diagram file
-    \caption{PupSched System Architecture}
-    \label{fig:arch}
-\end{figure}
-
-\section{Key Features}
+\section{System Overview}
+\subsection{Key Features}
 \begin{itemize}
-    \item Automatic faculty load computation
-    \item Conflict-free scheduling
-    \item Integration with PUP databases
-    \item Real-time availability tracking
+    \item Automated faculty scheduling
+    \item Centralized database
+    \item Web-based interface
+    \item Notifications and reminders
 \end{itemize}
 
-\section{Technology Stack}
-\begin{table}[h]
-    \centering
-    \begin{tabular}{ll}
-        \toprule
-        \textbf{Component} & \textbf{Technology} \\
-        \midrule
-        Backend & Node.js / Express \\
-        Database & MySQL \\
-        Frontend & React.js \\
-        Authentication & JWT \\
-        Deployment & AWS EC2 \\
-        \bottomrule
-    \end{tabular}
-    \caption{Technology stack used in PupSched}
-    \label{tab:stack}
-\end{table}
+\subsection{Architecture Diagram}
+\begin{center}
+% \includegraphics[width=0.7\textwidth]{assets/system_architecture.png}
+\end{center}
+
+\section{Installation}
+\begin{enumerate}
+    \item Clone the repository
+    \item Install dependencies: \texttt{npm install}
+    \item Run the application: \texttt{node app.js}
+\end{enumerate}
+
+\section{Code Example}
+\begin{lstlisting}[caption={Sample Node.js Code}]
+const express = require('express');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello PupSched!');
+});
+
+app.listen(3000, () => console.log("Server running"));
+\end{lstlisting}
 
 \section{Conclusion}
-Summarize the system’s impact and future development plans.
+The PupSched system simplifies scheduling for faculty members and improves administrative efficiency.
 
 \end{document}
