@@ -31,22 +31,52 @@ import { useState } from 'react';
 
 const data: Payment[] = [
     {
-        code: 'ABC123',
-        name: 'Fuck',
-        unit: 69,
-        instructor: 'Papa Renzie',
+        code: 'ACCO 014',
+        name: 'Principles of Acco******',
+        unit: 3.0,
+        instructor: '********, ******* **. *.',
     },
     {
-        code: 'DEF456',
-        name: 'Puta',
-        unit: 143,
-        instructor: 'Santo Papa Mark',
+        code: 'COMP 001',
+        name: 'Introduction to Computing',
+        unit: 3.0,
+        instructor: 'NAVARRO, P**** D**** R****',
     },
     {
-        code: 'GHI789',
-        name: 'Tite',
-        unit: 5,
-        instructor: 'Daddy Diddy',
+        code: 'CWTS 001',
+        name: 'Civic Welfare Training Service 1',
+        unit: 3.0,
+        instructor: 'VILLANUEVA, J***** O.',
+    },
+    {
+        code: 'ELEC IT-FE1',
+        name: 'BSIT Free Elective 1',
+        unit: 3.0,
+        instructor: 'LLENARES, I** I.',
+    },
+    {
+        code: 'GEED 032',
+        name: 'Filipinolohiya at Pambansang Kaunlaran',
+        unit: 3.0,
+        instructor: 'MORANO, S******* K**** D*****',
+    },
+    {
+        code: 'HRMA 001',
+        name: 'Principles of Organization and Management',
+        unit: 3.0,
+        instructor: 'DELA CRUZ, M****** P******',
+    },
+    {
+        code: 'INTE 201',
+        name: 'Programming 3 (Structured Programming)',
+        unit: 3.0,
+        instructor: 'NAYRE, R***** A.',
+    },
+    {
+        code: 'PATHFIT 1',
+        name: 'Physical Activity Towards Health and Fitness 1',
+        unit: 2.0,
+        instructor: 'DELOS SANTOS, J**** R.',
     },
 ];
 export type Payment = {
@@ -143,39 +173,43 @@ export default function Subject() {
                     <DialogTrigger asChild>
                         <Button>Add Course</Button>
                     </DialogTrigger>
-                    <DialogContent>
+                    <DialogContent className="w-fit">
                         <DialogTitle>Add Course</DialogTitle>
                         <DialogDescription>Add course for the current curriculum.</DialogDescription>
                         <form className="flex flex-col gap-3" action="">
                             <div className="flex gap-2">
                                 <Select>
-                                    <SelectTrigger className="w-20">
-                                        <SelectValue placeholder="INTE" />
+                                    <SelectTrigger className="w-28">
+                                        <SelectValue placeholder="COMP" />
                                     </SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="INTE">INTE</SelectItem>
-                                        <SelectItem value="GEED">GEED</SelectItem>
+                                        <SelectItem value="ACCO">ACCO</SelectItem>
+                                        <SelectItem value="COMP">COMP</SelectItem>
+                                        <SelectItem value="CWTS">CWTS</SelectItem>
                                         <SelectItem value="ELEC">ELEC</SelectItem>
+                                        <SelectItem value="GEED">GEED</SelectItem>
+                                        <SelectItem value="HRMA">HRMA</SelectItem>
+                                        <SelectItem value="INTE">INTE</SelectItem>
+                                        <SelectItem value="PATHFIT">PATHFIT</SelectItem>
                                     </SelectContent>
                                 </Select>
-
-                                <Input className="w-20" type="number" placeholder="Code"></Input>
+                                <Input className="w-32" type="number" placeholder="Code"></Input>
+                                <Select>
+                                    <SelectTrigger className="w-20">
+                                        <SelectValue placeholder="Units" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="1.0">1.0</SelectItem>
+                                        <SelectItem value="2.0">2.0</SelectItem>
+                                        <SelectItem value="3.0">3.0</SelectItem>
+                                        <SelectItem value="4.0">4.0</SelectItem>
+                                        <SelectItem value="5.0">5.0</SelectItem>
+                                        <SelectItem value="6.0">6.0</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
                             <Input type="text" placeholder="Course Name"></Input>
-                            <Select>
-                                <SelectTrigger className="w-20">
-                                    <SelectValue placeholder="Units" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value="1">1</SelectItem>
-                                    <SelectItem value="3">3</SelectItem>
-                                    <SelectItem value="5">5</SelectItem>
-                                    <SelectItem value="6">6</SelectItem>
-                                </SelectContent>
-                            </Select>
-
                             <Input type="text" placeholder="Instructor"></Input>
-
                             <Button className="mt-2">Add</Button>
                         </form>
                     </DialogContent>
@@ -189,7 +223,7 @@ export default function Subject() {
                                     <TableRow key={headerGroup.id}>
                                         {headerGroup.headers.map((header) => {
                                             return (
-                                                <TableHead key={header.id}>
+                                                <TableHead key={header.id} className='font-bold px-4'>
                                                     {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                                                 </TableHead>
                                             );
@@ -202,7 +236,7 @@ export default function Subject() {
                                     table.getRowModel().rows.map((row) => (
                                         <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                                             {row.getVisibleCells().map((cell) => (
-                                                <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                                                <TableCell key={cell.id} className='px-4'>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                                             ))}
                                         </TableRow>
                                     ))
