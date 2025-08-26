@@ -1,11 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -122,8 +117,8 @@ export const columns: ColumnDef<Payment>[] = [
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                            <DropdownMenuItem className='cursor-pointer'>Edit course</DropdownMenuItem>
-                            <DropdownMenuItem className='text-red-500 cursor-pointer'>Delete course</DropdownMenuItem>
+                            <DropdownMenuItem className="cursor-pointer">Edit course</DropdownMenuItem>
+                            <DropdownMenuItem className="cursor-pointer text-red-500">Delete course</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
@@ -234,7 +229,7 @@ export default function Subject() {
                                     <TableRow key={headerGroup.id}>
                                         {headerGroup.headers.map((header) => {
                                             return (
-                                                <TableHead key={header.id} className='font-bold px-4'>
+                                                <TableHead key={header.id} className="px-4 font-bold">
                                                     {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                                                 </TableHead>
                                             );
@@ -247,7 +242,9 @@ export default function Subject() {
                                     table.getRowModel().rows.map((row) => (
                                         <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
                                             {row.getVisibleCells().map((cell) => (
-                                                <TableCell key={cell.id} className='px-4'>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+                                                <TableCell key={cell.id} className="px-4">
+                                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                                </TableCell>
                                             ))}
                                         </TableRow>
                                     ))

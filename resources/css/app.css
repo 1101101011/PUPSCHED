@@ -86,15 +86,16 @@
     --popover-foreground: oklch(0.145 0 0);
     --primary: oklch(0.205 0 0);
     --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);.no-spinner {
-  -moz-appearance: textfield;
+    --secondary: oklch(0.97 0 0);
+    .no-spinner {
+        -moz-appearance: textfield;
 
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-}
+        &::-webkit-inner-spin-button,
+        &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
 
     --muted-foreground: oklch(0.556 0 0);
     --accent: oklch(0.97 0 0);
@@ -165,17 +166,17 @@
     }
 
     button:not([disabled]),
-    [role="button"]:not([disabled]) {
+    [role='button']:not([disabled]) {
         cursor: pointer;
     }
 }
 
 .no-spinner {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 }
