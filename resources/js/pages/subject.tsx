@@ -4,8 +4,6 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
@@ -100,7 +98,10 @@ export const columns: ColumnDef<Payment>[] = [
     {
         accessorKey: 'unit',
         header: 'Units',
-        cell: ({ row }) => <div className="capitalize">{row.getValue('unit')}</div>,
+        cell: ({ row }) => {
+            const value = row.getValue<number>('unit');
+            return <div>{value.toFixed(1)}</div>;
+        },
     },
     {
         accessorKey: 'instructor',
@@ -121,10 +122,8 @@ export const columns: ColumnDef<Payment>[] = [
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem>View customer</DropdownMenuItem>
-                            <DropdownMenuItem>View payment details</DropdownMenuItem>
+                            <DropdownMenuItem className='cursor-pointer'>Edit course</DropdownMenuItem>
+                            <DropdownMenuItem className='text-red-500 cursor-pointer'>Delete course</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
@@ -169,51 +168,63 @@ export default function Subject() {
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Subject" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <Dialog>
-                    <DialogTrigger asChild>
-                        <Button>Add Course</Button>
-                    </DialogTrigger>
-                    <DialogContent className="w-fit">
-                        <DialogTitle>Add Course</DialogTitle>
-                        <DialogDescription>Add course for the current curriculum.</DialogDescription>
-                        <form className="flex flex-col gap-3" action="">
-                            <div className="flex gap-2">
-                                <Select>
-                                    <SelectTrigger className="w-28">
-                                        <SelectValue placeholder="COMP" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="ACCO">ACCO</SelectItem>
-                                        <SelectItem value="COMP">COMP</SelectItem>
-                                        <SelectItem value="CWTS">CWTS</SelectItem>
-                                        <SelectItem value="ELEC">ELEC</SelectItem>
-                                        <SelectItem value="GEED">GEED</SelectItem>
-                                        <SelectItem value="HRMA">HRMA</SelectItem>
-                                        <SelectItem value="INTE">INTE</SelectItem>
-                                        <SelectItem value="PATHFIT">PATHFIT</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                                <Input className="w-32" type="number" placeholder="Code"></Input>
-                                <Select>
-                                    <SelectTrigger className="w-20">
-                                        <SelectValue placeholder="Units" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="1.0">1.0</SelectItem>
-                                        <SelectItem value="2.0">2.0</SelectItem>
-                                        <SelectItem value="3.0">3.0</SelectItem>
-                                        <SelectItem value="4.0">4.0</SelectItem>
-                                        <SelectItem value="5.0">5.0</SelectItem>
-                                        <SelectItem value="6.0">6.0</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                            <Input type="text" placeholder="Course Name"></Input>
-                            <Input type="text" placeholder="Instructor"></Input>
-                            <Button className="mt-2">Add</Button>
-                        </form>
-                    </DialogContent>
-                </Dialog>
+                <div className="flex items-center justify-between">
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <Button>Add Course</Button>
+                        </DialogTrigger>
+                        <DialogContent className="w-fit">
+                            <DialogTitle>Add Course</DialogTitle>
+                            <DialogDescription>Add course for the current curriculum.</DialogDescription>
+                            <form className="flex flex-col gap-3" action="">
+                                <div className="flex gap-2">
+                                    <Select>
+                                        <SelectTrigger className="w-28">
+                                            <SelectValue placeholder="COMP" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="ACCO">ACCO</SelectItem>
+                                            <SelectItem value="COMP">COMP</SelectItem>
+                                            <SelectItem value="CWTS">CWTS</SelectItem>
+                                            <SelectItem value="ELEC">ELEC</SelectItem>
+                                            <SelectItem value="GEED">GEED</SelectItem>
+                                            <SelectItem value="HRMA">HRMA</SelectItem>
+                                            <SelectItem value="INTE">INTE</SelectItem>
+                                            <SelectItem value="PATHFIT">PATHFIT</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                    <Input className="w-32" type="number" placeholder="Code"></Input>
+                                    <Select>
+                                        <SelectTrigger className="w-20">
+                                            <SelectValue placeholder="Units" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="1.0">1.0</SelectItem>
+                                            <SelectItem value="2.0">2.0</SelectItem>
+                                            <SelectItem value="3.0">3.0</SelectItem>
+                                            <SelectItem value="4.0">4.0</SelectItem>
+                                            <SelectItem value="5.0">5.0</SelectItem>
+                                            <SelectItem value="6.0">6.0</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <Input type="text" placeholder="Course Name"></Input>
+                                <Input type="text" placeholder="Instructor"></Input>
+                                <Button className="mt-2">Add</Button>
+                            </form>
+                        </DialogContent>
+                    </Dialog>
+                    <div className="flex items-center justify-end space-x-2">
+                        <div className="space-x-2">
+                            <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+                                Previous
+                            </Button>
+                            <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+                                Next
+                            </Button>
+                        </div>
+                    </div>
+                </div>
 
                 <div className="w-full">
                     <div className="overflow-hidden rounded-md border">
@@ -249,16 +260,6 @@ export default function Subject() {
                                 )}
                             </TableBody>
                         </Table>
-                    </div>
-                    <div className="flex items-center justify-end space-x-2 py-4">
-                        <div className="space-x-2">
-                            <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
-                                Previous
-                            </Button>
-                            <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
-                                Next
-                            </Button>
-                        </div>
                     </div>
                 </div>
             </div>
