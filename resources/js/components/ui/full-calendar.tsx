@@ -282,7 +282,7 @@ const CalendarWeekView = () => {
             )}
           >
             {format(date, 'E', { locale })}
-            <span
+            {/* <span
               className={cn(
                 'h-6 grid place-content-center',
                 isToday(date) &&
@@ -290,7 +290,7 @@ const CalendarWeekView = () => {
               )}
             >
               {format(date, 'd')}
-            </span>
+            </span> */}
           </div>
         ))}
       </div>

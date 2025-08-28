@@ -136,43 +136,12 @@ export default function Dashboard() {
                                         </DialogFooter>
                                     </DialogContent>
                                 </Dialog>
-                                {/* <CalendarViewTrigger
-                                    view="month"
-                                    className="aria-[current=true]:bg-accent"
-                                >
-                                    Month
-                                </CalendarViewTrigger> */}
-                                {/* <CalendarViewTrigger
-                                    view="year"
-                                    className="aria-[current=true]:bg-accent"
-                                >
-                                    Year
-                                </CalendarViewTrigger> */}
-
                                 <span className="flex-1" />
-
                                 <CalendarCurrentDate />
-
-                                {/* <CalendarPrevTrigger>
-                                    <ChevronLeft size={20} />
-                                    <span className="sr-only">Previous</span>
-                                </CalendarPrevTrigger>
-
-                                <CalendarTodayTrigger>Today</CalendarTodayTrigger>
-
-                                <CalendarNextTrigger>
-                                    <ChevronRight size={20} />
-                                    <span className="sr-only">Next</span>
-                                </CalendarNextTrigger> */}
-
-                                {/* <ModeToggle /> */}
                             </div>
 
                             <div className="relative flex-1 overflow-auto px-6">
-                                {/* <CalendarDayView /> */}
                                 <CalendarWeekView />
-                                {/* <CalendarMonthView /> */}
-                                {/* <CalendarYearView /> */}
                             </div>
                         </div>
                     </Calendar>

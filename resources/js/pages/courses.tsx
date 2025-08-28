@@ -129,8 +129,8 @@ export const columns: ColumnDef<Payment>[] = [
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Subject',
-        href: '/subject',
+        title: 'Courses',
+        href: '/Courses',
     },
 ];
 

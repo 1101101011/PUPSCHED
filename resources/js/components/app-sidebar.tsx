@@ -9,37 +9,24 @@ import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
     {
-        title: 'Dashboard',
-        href: '/dashboard',
-        icon: LayoutGrid,
-    },
-    {
         title: 'Export',
         href: '/export',
         icon: FileOutput,
     },
     {
-        title: 'Subject',
-        href: '/subject',
+        title: 'Courses',
+        href: '/courses',
         icon: BookOpen,
     },
     {
-        title: 'Instructor',
-        href: '/instructor',
+        title: 'Classes',
+        href: '/classes',
+        icon: LayoutGrid,
+    },
+    {
+        title: 'Instructors',
+        href: '/instructors',
         icon: User,
-    },
-];
-
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
     },
 ];
 
@@ -50,7 +37,7 @@ export function AppSidebar() {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
-                            <Link href="/dashboard" prefetch>
+                            <Link href="/export" prefetch>
                                 <AppLogo />
                             </Link>
                         </SidebarMenuButton>
@@ -63,7 +50,7 @@ export function AppSidebar() {
             </SidebarContent>
 
             <SidebarFooter>
-                <NavFooter items={footerNavItems} className="mt-auto" />
+            {/*<NavFooter items={footerNavItems} className="mt-auto" />*/}
                 <NavUser />
             </SidebarFooter>
         </Sidebar>
