@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.18)  29 AUG 2025 02:17
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.8.18)  29 AUG 2025 02:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -769,67 +769,67 @@ File: assets/pupsched_logo.pdf Graphic file (type pdf)
 [1
 
 ]
-Underfull \hbox (badness 2088) in paragraph at lines 37--40
+Underfull \hbox (badness 2088) in paragraph at lines 36--39
 \TU/Manrope(0)/m/n/12 This document ONLY provides a brief and basic technical overview of the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--56
+Underfull \hbox (badness 10000) in paragraph at lines 55--55
 []|\TU/Manrope(0)/m/n/12 Secure
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--57
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
 []|\TU/Manrope(0)/m/n/12 Implements JWT-based login, session
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--57
+Underfull \hbox (badness 10000) in paragraph at lines 55--56
 \TU/Manrope(0)/m/n/12 handling, and role-based access control
  []
 
 
-Underfull \hbox (badness 1902) in paragraph at lines 58--58
+Underfull \hbox (badness 1902) in paragraph at lines 57--57
 []|\TU/Manrope(0)/m/n/12 Admin Management
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
+Underfull \hbox (badness 10000) in paragraph at lines 57--58
 []|\TU/Manrope(0)/m/n/12 Provides full CRUD operations for users,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--59
+Underfull \hbox (badness 10000) in paragraph at lines 57--58
 \TU/Manrope(0)/m/n/12 courses, and schedules, including system
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--62
+Underfull \hbox (badness 10000) in paragraph at lines 61--61
 []|\TU/Manrope(0)/m/n/12 Responsive Web
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--63
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
 []|\TU/Manrope(0)/m/n/12 Mobile-friendly interface optimized for
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 64--65
+Underfull \hbox (badness 10000) in paragraph at lines 63--64
 []|\TU/Manrope(0)/m/n/12 Supports live schedule modifications with
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--67
+Underfull \hbox (badness 10000) in paragraph at lines 65--66
 []|\TU/Manrope(0)/m/n/12 Utilizes a PostgreSQL-backed database
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--67
+Underfull \hbox (badness 10000) in paragraph at lines 65--66
 \TU/Manrope(0)/m/n/12 ensuring consistency, reliability, and
  []
 
 
-Overfull \hbox (1.33078pt too wide) in paragraph at lines 52--69
+Overfull \hbox (1.33078pt too wide) in paragraph at lines 51--68
  [][] 
  []
 
@@ -849,7 +849,7 @@ Package fancyhdr Warning: \headheight is too small (20.0pt):
 [1]
 
 Package caption Warning: \setcaptiontype
-(caption)                outside box or environment on input line 106.
+(caption)                outside box or environment on input line 105.
 See the caption package documentation for explanation.
 
 
@@ -866,7 +866,7 @@ Package fancyhdr Warning: \headheight is too small (20.0pt):
 [2]
 
 LaTeX Font Warning: Font shape `TU/Manrope(0)/b/sc' undefined
-(Font)              using `TU/Manrope(0)/b/n' instead on input line 113.
+(Font)              using `TU/Manrope(0)/b/n' instead on input line 112.
 
 (/mnt/storage/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
