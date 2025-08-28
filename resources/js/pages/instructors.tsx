@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -20,7 +20,7 @@ import {
     VisibilityState,
 } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 const data: Payment[] = [
     {
@@ -72,88 +72,13 @@ const data: Payment[] = [
         instructor: 'DELOS SANTOS, J**** R.',
     },
 ];
+
 export type Payment = {
     code: string;
     name: string;
     unit: number;
     instructor: string;
 };
-
-export const columns: ColumnDef<Payment>[] = [
-    {
-        accessorKey: 'code',
-        header: 'Course Code',
-        cell: ({ row }) => <div className="capitalize">{row.getValue('code')}</div>,
-    },
-    {
-        accessorKey: 'name',
-        header: 'Course Name',
-        cell: ({ row }) => <div className="capitalize">{row.getValue('name')}</div>,
-    },
-    {
-        accessorKey: 'unit',
-        header: 'Units',
-        cell: ({ row }) => {
-            const value = row.getValue<number>('unit');
-            return <div>{value.toFixed(1)}</div>;
-        },
-    },
-    {
-        accessorKey: 'instructor',
-        header: 'Instructors',
-        cell: ({ row }) => <div className="capitalize">{row.getValue('instructor')}</div>,
-    },
-    {
-        id: 'actions',
-        enableHiding: false,
-        cell: () => {
-            const [scheduleDialogOpen, setScheduleDialogOpen] = useState(false);
-            const scheduleDialog = () => {
-                setScheduleDialogOpen(false);
-            };
-            return (
-                <>
-                    <div className="flex justify-end">
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" className="h-8 w-8 p-0">
-                                    <span className="sr-only">Open menu</span>
-                                    <MoreHorizontal />
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                                <DropdownMenuItem className="cursor-pointer">Edit Instructor</DropdownMenuItem>
-                                <DropdownMenuItem className="cursor-pointer" onClick={() => setScheduleDialogOpen(true)}>
-                                    View Schedule
-                                </DropdownMenuItem>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem className="cursor-pointer text-red-500">Delete Instructor</DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    </div>
-                    <Dialog open={scheduleDialogOpen} onOpenChange={setScheduleDialogOpen}>
-                        <DialogContent>
-                            <DialogHeader>
-                                <DialogTitle>Schedule</DialogTitle>
-                                <DialogDescription>View Instructor's Schedule</DialogDescription>
-                            </DialogHeader>
-                            <DialogFooter>
-                                <DialogClose asChild>
-                                    <Button tabIndex={3} variant="outline" onClick={() => setScheduleDialogOpen(false)}>
-                                        Cancel
-                                    </Button>
-                                </DialogClose>
-                                <Button onClick={scheduleDialog}>
-                                    Revert
-                                </Button>
-                            </DialogFooter>
-                        </DialogContent>
-                    </Dialog>
-                </>
-            );
-        },
-    },
-];
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -167,6 +92,75 @@ export default function Subject() {
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
     const [rowSelection, setRowSelection] = useState({});
+    const [scheduleDialogOpen, setScheduleDialogOpen] = useState(false);
+
+    const handleViewSchedule = useCallback(() => {
+        setScheduleDialogOpen(true);
+    }, []);
+
+    const handleCloseDialog = useCallback(() => {
+        setScheduleDialogOpen(false);
+        setTimeout(() => { }, 100);
+    }, []);
+
+    const columns: ColumnDef<Payment>[] = [
+        {
+            accessorKey: 'code',
+            header: 'Course Code',
+            cell: ({ row }) => <div className="capitalize">{row.getValue('code')}</div>,
+        },
+        {
+            accessorKey: 'name',
+            header: 'Course Name',
+            cell: ({ row }) => <div className="capitalize">{row.getValue('name')}</div>,
+        },
+        {
+            accessorKey: 'unit',
+            header: 'Units',
+            cell: ({ row }) => {
+                const value = row.getValue<number>('unit');
+                return <div>{value.toFixed(1)}</div>;
+            },
+        },
+        {
+            accessorKey: 'instructor',
+            header: 'Instructors',
+            cell: ({ row }) => <div className="capitalize">{row.getValue('instructor')}</div>,
+        },
+        {
+            id: 'actions',
+            enableHiding: false,
+            cell: ({ }) => {
+                return (
+                    <div className="flex justify-end">
+                        <DropdownMenu modal={false}>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" className="h-8 w-8 p-0">
+                                    <span className="sr-only">Open menu</span>
+                                    <MoreHorizontal />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                <DropdownMenuItem className="cursor-pointer">
+                                    Edit Instructor
+                                </DropdownMenuItem>
+                                <DropdownMenuItem
+                                    className="cursor-pointer"
+                                    onSelect={() => handleViewSchedule()}
+                                >
+                                    View Schedule
+                                </DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem className="cursor-pointer text-red-500">
+                                    Delete Instructor
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
+                );
+            },
+        },
+    ];
 
     const table = useReactTable({
         data,
@@ -239,10 +233,20 @@ export default function Subject() {
                     </Dialog>
                     <div className="flex items-center justify-end space-x-2">
                         <div className="space-x-2">
-                            <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => table.previousPage()}
+                                disabled={!table.getCanPreviousPage()}
+                            >
                                 Previous
                             </Button>
-                            <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => table.nextPage()}
+                                disabled={!table.getCanNextPage()}
+                            >
                                 Next
                             </Button>
                         </div>
@@ -288,7 +292,25 @@ export default function Subject() {
                     </div>
                 </div>
             </div>
+
+            {scheduleDialogOpen && (
+                <Dialog open={scheduleDialogOpen} onOpenChange={setScheduleDialogOpen}>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>Schedule</DialogTitle>
+                            <DialogDescription>View Instructor's Schedule</DialogDescription>
+                        </DialogHeader>
+                        <DialogFooter>
+                            <Button variant="outline" onClick={handleCloseDialog}>
+                                Cancel
+                            </Button>
+                            <Button onClick={handleCloseDialog}>
+                                Revert
+                            </Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+            )}
         </AppLayout>
     );
 }
-
