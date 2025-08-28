@@ -14,6 +14,9 @@
 \usepackage[table]{xcolor} 
 \usepackage[most]{tcolorbox}
 \usepackage{fontawesome5}
+\usepackage[none]{hyphenat}
+\usepackage{array}  
+
 
 % ====== TCOLORBOX STYLES ======
 \tcbset{
@@ -34,34 +37,47 @@
   }
 }
 
-\newtcolorbox{featurebox}[1][]{
-  breakable,
-  colback=blue!1,
-  colframe=gray!40,
-  boxrule=0.5pt, 
-  arc=4pt,
-  boxsep=0pt,        % internal padding
-  left=0pt, right=0pt, top=0pt, bottom=0pt,
-  left skip=0pt,     % remove left indent
-  right skip=0pt,    % remove right indent
-  width=\linewidth,  % make box exactly page width
-  enlarge left by=0mm,
-  enlarge right by=0mm,
-  fontupper=\sffamily,
-  title=#1,
-  coltitle=blue!70!black,
-  fonttitle=\sffamily\bfseries
+
+\newenvironment{featuretable}{
+  \renewcommand{\arraystretch}{1.3} % adjust row height
+  \setlength{\tabcolsep}{10pt}       % adjust column padding
+  \begin{tabular}{|p{5cm}|p{10cm}|} % <-- added | for borders
+  \hline
+}{
+  \hline
+  \end{tabular}
 }
+
+
+
+% \newtcolorbox{featurebox}[1][]{
+%   breakable,
+%   colback=blue!1,
+%   colframe=gray!40,
+%   boxrule=0.5pt, 
+%   arc=4pt,
+%   boxsep=0pt,        % internal padding
+%   left=0pt, right=0pt, top=0pt, bottom=0pt,
+%   left skip=0pt,     % remove left indent
+%   right skip=0pt,    % remove right indent
+%   width=\linewidth,  % make box exactly page width
+%   enlarge left by=0mm,
+%   enlarge right by=0mm,
+%   fontupper=\sffamily,
+%   title=#1,
+%   coltitle=blue!70!black,
+%   fonttitle=\sffamily\bfseries
+% }
 
 
 % ====== FONTS ======
 \setmainfont[
-  Path = font/Newsreader/static/,
-  UprightFont = *_24pt-Regular.ttf,
-  ItalicFont  = *_24pt-Italic.ttf,
-  BoldFont    = *_24pt-Bold.ttf,
-  BoldItalicFont = *_24pt-BoldItalic.ttf
-]{Newsreader}
+  Path = font/Manrope/static/,
+  UprightFont = *-Regular.ttf,
+  BoldFont    = *-Bold.ttf,
+  ItalicFont  = *-Medium.ttf, 
+  BoldItalicFont = *-SemiBold.ttf
+]{Manrope}
 
 \setsansfont[
   Path = font/Manrope/static/,
@@ -165,8 +181,7 @@
     \begin{flushleft}
         \begin{minipage}{\textwidth}
             {\sffamily\itshape\textcolor{gray}{
-            This is a scheduling system designed to help the Polytechnic University of the Philippines 
-            optimize and automate faculty workload assignments, ensuring efficiency and fairness in academic scheduling.}}
+            This is a comprehensive faculty load management system designed to streamline the scheduling process at Polytechnic University of the Philippines - San Juan Campus.}}
         \end{minipage}
     \end{flushleft}
     
@@ -199,10 +214,10 @@
 }
 
 % === Custom Feature Table ===
-\newenvironment{featuretable}{
-  \renewcommand{\arraystretch}{1.1}%
-  \begin{tabular}{>{\centering\arraybackslash}p{5cm}|>{\centering\arraybackslash}p{10cm}}
-  \rowcolor{gray!30} \textbf{Feature} & \textbf{Description} \\
-}{
-  \end{tabular}
-}
+% \newenvironment{featuretable}{
+%   \renewcommand{\arraystretch}{1.1}%
+%   \begin{tabular}{>{\centering\arraybackslash}p{5cm}|>{\centering\arraybackslash}p{10cm}}
+%   \rowcolor{gray!30} \textbf{Feature} & \textbf{Description} \\
+% }{
+%   \end{tabular}
+% }
