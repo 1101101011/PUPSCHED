@@ -1,7 +1,0 @@
-\babel@toc {english}{}\relax 
-\contentsline {section}{System Overview}{2}{}%
-\contentsline {subsection}{Key Features}{2}{}%
-\contentsline {subsection}{Architecture Diagram}{2}{}%
-\contentsline {section}{Installation}{2}{}%
-\contentsline {section}{Code Example}{2}{}%
-\contentsline {section}{Conclusion}{3}{}%
