@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
@@ -24,60 +23,51 @@ import { useState, useCallback } from 'react';
 
 const data: Payment[] = [
     {
-        code: 'ACCO 014',
-        name: 'Principles of Acco******',
-        unit: 3.0,
-        instructor: '********, ******* **. *.',
+        name: '********, ******* **. *.',
+        position: 'Instructor',
+        status: 'Part-time',
     },
     {
-        code: 'COMP 001',
-        name: 'Introduction to Computing',
-        unit: 3.0,
-        instructor: 'NAVARRO, P**** D**** R****',
+        name: 'NAVARRO, P**** D**** R****',
+        position: 'Lecturer',
+        status: 'Part-time',
     },
     {
-        code: 'CWTS 001',
-        name: 'Civic Welfare Training Service 1',
-        unit: 3.0,
-        instructor: 'VILLANUEVA, J***** O.',
+        name: 'VILLANUEVA, J***** O.',
+        position: 'Professor',
+        status: 'Full-time',
     },
     {
-        code: 'ELEC IT-FE1',
-        name: 'BSIT Free Elective 1',
-        unit: 3.0,
-        instructor: 'LLENARES, I** I.',
+        name: 'LLENARES, I** I.',
+        position: 'Professor',
+        status: 'Part-time',
     },
     {
-        code: 'GEED 032',
-        name: 'Filipinolohiya at Pambansang Kaunlaran',
-        unit: 3.0,
-        instructor: 'MORANO, S******* K**** D*****',
+        name: 'MORANO, S******* K**** D*****',
+        position: 'Professor',
+        status: 'Full-time',
     },
     {
-        code: 'HRMA 001',
-        name: 'Principles of Organization and Management',
-        unit: 3.0,
-        instructor: 'DELA CRUZ, M****** P******',
+        name: 'DELA CRUZ, M****** P******',
+        position: 'Instructor',
+        status: 'Full-time',
     },
     {
-        code: 'INTE 201',
-        name: 'Programming 3 (Structured Programming)',
-        unit: 3.0,
-        instructor: 'NAYRE, R***** A.',
+        name: 'NAYRE, R***** A.',
+        position: 'Instructor',
+        status: 'Part-time',
     },
     {
-        code: 'PATHFIT 1',
-        name: 'Physical Activity Towards Health and Fitness 1',
-        unit: 2.0,
-        instructor: 'DELOS SANTOS, J**** R.',
+        name: 'DELOS SANTOS, J**** R.',
+        position: 'Instructor',
+        status: 'Full-time',
     },
 ];
 
 export type Payment = {
-    code: string;
     name: string;
-    unit: number;
-    instructor: string;
+    position: string;
+    status: string;
 };
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -105,27 +95,19 @@ export default function Subject() {
 
     const columns: ColumnDef<Payment>[] = [
         {
-            accessorKey: 'code',
-            header: 'Course Code',
-            cell: ({ row }) => <div className="capitalize">{row.getValue('code')}</div>,
-        },
-        {
             accessorKey: 'name',
-            header: 'Course Name',
+            header: 'Instructor',
             cell: ({ row }) => <div className="capitalize">{row.getValue('name')}</div>,
         },
         {
-            accessorKey: 'unit',
-            header: 'Units',
-            cell: ({ row }) => {
-                const value = row.getValue<number>('unit');
-                return <div>{value.toFixed(1)}</div>;
-            },
+            accessorKey: 'position',
+            header: 'Position',
+            cell: ({ row }) => <div className="capitalize">{row.getValue('position')}</div>,
         },
         {
-            accessorKey: 'instructor',
-            header: 'Instructors',
-            cell: ({ row }) => <div className="capitalize">{row.getValue('instructor')}</div>,
+            accessorKey: 'status',
+            header: 'Employment Status',
+            cell: ({ row }) => <div className="capitalize">{row.getValue('status')}</div>,
         },
         {
             id: 'actions',
@@ -190,43 +172,13 @@ export default function Subject() {
                         <DialogTrigger asChild>
                             <Button>Add Instructor</Button>
                         </DialogTrigger>
-                        <DialogContent className="w-fit">
+                        <DialogContent className="w-96">
                             <DialogTitle>Add Instructor</DialogTitle>
-                            <DialogDescription>Add new Instructor</DialogDescription>
+                            <DialogDescription>Add a new instructor.</DialogDescription>
                             <form className="flex flex-col gap-3" action="">
-                                <div className="flex gap-2">
-                                    <Select>
-                                        <SelectTrigger className="w-28">
-                                            <SelectValue placeholder="COMP" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="ACCO">ACCO</SelectItem>
-                                            <SelectItem value="COMP">COMP</SelectItem>
-                                            <SelectItem value="CWTS">CWTS</SelectItem>
-                                            <SelectItem value="ELEC">ELEC</SelectItem>
-                                            <SelectItem value="GEED">GEED</SelectItem>
-                                            <SelectItem value="HRMA">HRMA</SelectItem>
-                                            <SelectItem value="INTE">INTE</SelectItem>
-                                            <SelectItem value="PATHFIT">PATHFIT</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                    <Input className="w-32" type="number" placeholder="Code"></Input>
-                                    <Select>
-                                        <SelectTrigger className="w-20">
-                                            <SelectValue placeholder="Units" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="1.0">1.0</SelectItem>
-                                            <SelectItem value="2.0">2.0</SelectItem>
-                                            <SelectItem value="3.0">3.0</SelectItem>
-                                            <SelectItem value="4.0">4.0</SelectItem>
-                                            <SelectItem value="5.0">5.0</SelectItem>
-                                            <SelectItem value="6.0">6.0</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                                <Input type="text" placeholder="Course Name"></Input>
-                                <Input type="text" placeholder="Instructor"></Input>
+                                <Input type="text" placeholder="Name"></Input>
+                                <Input type="text" placeholder="Position"></Input>
+                                <Input type="text" placeholder="Employment Status"></Input>
                                 <Button className="mt-2">Add</Button>
                             </form>
                         </DialogContent>
@@ -298,7 +250,7 @@ export default function Subject() {
                     <DialogContent>
                         <DialogHeader>
                             <DialogTitle>Schedule</DialogTitle>
-                            <DialogDescription>View Instructor's Schedule</DialogDescription>
+                            <DialogDescription>View instructor's schedule.</DialogDescription>
                         </DialogHeader>
                         <DialogFooter>
                             <Button variant="outline" onClick={handleCloseDialog}>
