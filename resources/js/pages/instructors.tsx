@@ -108,6 +108,9 @@ export const columns: ColumnDef<Payment>[] = [
         enableHiding: false,
         cell: () => {
             const [scheduleDialogOpen, setScheduleDialogOpen] = useState(false);
+            const scheduleDialog = () => {
+                setScheduleDialogOpen(false);
+            };
             return (
                 <>
                     <div className="flex justify-end">
@@ -135,12 +138,12 @@ export const columns: ColumnDef<Payment>[] = [
                                 <DialogDescription>View Instructor's Schedule</DialogDescription>
                             </DialogHeader>
                             <DialogFooter>
-                                {/* <DialogClose asChild> */}
+                                <DialogClose asChild>
                                     <Button tabIndex={3} variant="outline" onClick={() => setScheduleDialogOpen(false)}>
                                         Cancel
                                     </Button>
-                                {/*</DialogClose>*/}
-                                <Button onClick={() => setScheduleDialogOpen(false)}>
+                                </DialogClose>
+                                <Button onClick={scheduleDialog}>
                                     Revert
                                 </Button>
                             </DialogFooter>
