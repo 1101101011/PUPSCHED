@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger, DialogHeader, DialogFooter } from '@/components/ui/dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -116,14 +116,101 @@ export const columns: ColumnDef<Classes>[] = [
                                 <MoreHorizontal />
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            <DropdownMenuItem className="cursor-pointer">Edit Class</DropdownMenuItem>
-                            <DropdownMenuItem className="cursor-pointer">View Schedule</DropdownMenuItem>
+                        <DropdownMenuContent align="end" className='flex flex-col'>
+
+                            {/* Edit Class Dialog */}
+                            <Dialog>
+                                <DialogTrigger asChild>
+                                    <Button variant="ghost" className='flex-start'>
+                                        Edit Class
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>Edit Class</DialogTitle>
+                                        <DialogDescription>
+                                            Update the class details below.
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <form className="grid gap-4 mt-4">
+                                        <input
+                                            type="text"
+                                            placeholder="Class Name"
+                                            className="border rounded-md p-2 w-full"
+                                        />
+                                        <input
+                                            type="text"
+                                            placeholder="Instructor"
+                                            className="border rounded-md p-2 w-full"
+                                        />
+                                    </form>
+                                    <DialogFooter>
+                                        <Button type="button" variant="outline">
+                                            Cancel
+                                        </Button>
+                                        <Button type="submit">Save changes</Button>
+                                    </DialogFooter>
+                                </DialogContent>
+                            </Dialog>
+
+                            {/* View Schedule Dialog */}
+                            <Dialog>
+                                <DialogTrigger asChild>
+                                    <Button variant="ghost" className='flex-start'>
+                                        View Schedule
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>Class Schedule</DialogTitle>
+                                        <DialogDescription>
+                                            Here’s the schedule for this class.
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <div className="mt-4 space-y-2">
+                                        <p><strong>Monday:</strong> 9:00 AM – 11:00 AM</p>
+                                        <p><strong>Wednesday:</strong> 1:00 PM – 3:00 PM</p>
+                                        <p><strong>Friday:</strong> 10:00 AM – 12:00 PM</p>
+                                    </div>
+                                    <DialogFooter>
+                                        <Button type="button" variant="outline">
+                                            Close
+                                        </Button>
+                                    </DialogFooter>
+                                </DialogContent>
+                            </Dialog>
+
                             <DropdownMenuSeparator />
-                            <DropdownMenuItem className="cursor-pointer text-red-500">Delete Class</DropdownMenuItem>
+
+                            {/* Delete Class Dialog */}
+                            <Dialog>
+                                <DialogTrigger asChild>
+                                    <Button variant="ghost" className='flex-start text-red-500'>
+                                        Delete Class
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>Delete Class</DialogTitle>
+                                        <DialogDescription>
+                                            Are you sure you want to delete this class? This action cannot be undone.
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <DialogFooter>
+                                        <Button type="button" variant="outline">
+                                            Cancel
+                                        </Button>
+                                        <Button type="button" variant="destructive">
+                                            Delete
+                                        </Button>
+                                    </DialogFooter>
+                                </DialogContent>
+                            </Dialog>
+
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
+
             );
         },
     },

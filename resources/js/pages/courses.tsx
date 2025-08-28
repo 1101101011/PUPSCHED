@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger, DialogHeader, DialogFooter } from '@/components/ui/dialog';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -116,12 +116,72 @@ export const columns: ColumnDef<Payment>[] = [
                                 <MoreHorizontal />
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            <DropdownMenuItem className="cursor-pointer">Edit course</DropdownMenuItem>
-                            <DropdownMenuItem className="cursor-pointer text-red-500">Delete course</DropdownMenuItem>
+                        <DropdownMenuContent align="end" className='flex flex-col'>   
+
+                            {/* Edit Course Dialog */}
+                            <Dialog>
+                                <DialogTrigger asChild>
+                                    <Button variant="ghost" className='flex-start'>
+                                    Edit Course
+                                </Button>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>Edit Course</DialogTitle>
+                                        <DialogDescription>
+                                            Update the course details below.
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <form className="grid gap-4 mt-4">
+                                        <input
+                                            type="text"
+                                            placeholder="Course Name"
+                                            className="border rounded-md p-2 w-full"
+                                        />
+                                        <input
+                                            type="text"
+                                            placeholder="Course Code"
+                                            className="border rounded-md p-2 w-full"
+                                        />
+                                    </form>
+                                    <DialogFooter>
+                                        <Button type="button" variant="outline">
+                                            Cancel
+                                        </Button>
+                                        <Button type="submit">Save changes</Button>
+                                    </DialogFooter>
+                                </DialogContent>
+                            </Dialog>
+
+                            {/* Delete Course Dialog */}
+                            <Dialog>
+                                <DialogTrigger asChild>
+                                    <Button variant="ghost" className='text-red-500 flex-start'>
+                                        Delete course
+                                    </Button>
+                                </DialogTrigger>
+                                <DialogContent>
+                                    <DialogHeader>
+                                        <DialogTitle>Delete Course</DialogTitle>
+                                        <DialogDescription>
+                                            Are you sure you want to delete this course? This action cannot be undone.
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <DialogFooter>
+                                        <Button type="button" variant="outline">
+                                            Cancel
+                                        </Button>
+                                        <Button type="button" variant="destructive">
+                                            Delete
+                                        </Button>
+                                    </DialogFooter>
+                                </DialogContent>
+                            </Dialog>
+
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
+
             );
         },
     },

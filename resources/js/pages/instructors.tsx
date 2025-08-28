@@ -122,23 +122,97 @@ export default function Subject() {
                                     <MoreHorizontal />
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
-                                <DropdownMenuItem className="cursor-pointer">
-                                    Edit Instructor
-                                </DropdownMenuItem>
-                                <DropdownMenuItem
-                                    className="cursor-pointer"
-                                    onSelect={() => handleViewSchedule()}
-                                >
-                                    View Schedule
-                                </DropdownMenuItem>
+                            <DropdownMenuContent
+                                align="end"
+                                className="flex flex-col space-y-1 p-2"
+                            >
+                                {/* Edit Instructor Dialog */}
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        <Button variant="ghost" className="flex-start w-full">
+                                            Edit Instructor
+                                        </Button>
+                                    </DialogTrigger>
+                                    <DialogContent>
+                                        <DialogHeader>
+                                            <DialogTitle>Edit Instructor</DialogTitle>
+                                            <DialogDescription>
+                                                Update the instructor’s details below.
+                                            </DialogDescription>
+                                        </DialogHeader>
+                                        <form className="grid gap-4 mt-4">
+                                            <input
+                                                type="text"
+                                                placeholder="Instructor Name"
+                                                className="border rounded-md p-2 w-full"
+                                            />
+                                            <input
+                                                type="email"
+                                                placeholder="Email"
+                                                className="border rounded-md p-2 w-full"
+                                            />
+                                        </form>
+                                        <DialogFooter>
+                                            <Button type="button" variant="outline">Cancel</Button>
+                                            <Button type="submit">Save changes</Button>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
+
+                                {/* View Schedule Dialog */}
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        <Button variant="ghost" className="flex-start w-full">
+                                            View Schedule
+                                        </Button>
+                                    </DialogTrigger>
+                                    <DialogContent>
+                                        <DialogHeader>
+                                            <DialogTitle>Instructor Schedule</DialogTitle>
+                                            <DialogDescription>
+                                                Here’s the instructor’s current schedule.
+                                            </DialogDescription>
+                                        </DialogHeader>
+                                        <div className="mt-4 space-y-2">
+                                            <p><strong>Monday:</strong> 9:00 AM – 11:00 AM</p>
+                                            <p><strong>Wednesday:</strong> 1:00 PM – 3:00 PM</p>
+                                            <p><strong>Friday:</strong> 10:00 AM – 12:00 PM</p>
+                                        </div>
+                                        <DialogFooter>
+                                            <Button type="button" variant="outline">Close</Button>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
+
                                 <DropdownMenuSeparator />
-                                <DropdownMenuItem className="cursor-pointer text-red-500">
-                                    Delete Instructor
-                                </DropdownMenuItem>
+
+                                {/* Delete Instructor Dialog */}
+                                <Dialog>
+                                    <DialogTrigger asChild>
+                                        <Button
+                                            variant="ghost"
+                                            className="flex-start w-full justify-start text-red-500"
+                                        >
+                                            Delete Instructor
+                                        </Button>
+                                    </DialogTrigger>
+                                    <DialogContent>
+                                        <DialogHeader>
+                                            <DialogTitle>Delete Instructor</DialogTitle>
+                                            <DialogDescription>
+                                                Are you sure you want to delete this instructor? This action cannot be undone.
+                                            </DialogDescription>
+                                        </DialogHeader>
+                                        <DialogFooter>
+                                            <Button type="button" variant="outline">Cancel</Button>
+                                            <Button type="button" variant="destructive">Delete</Button>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </div>
+
                 );
             },
         },
