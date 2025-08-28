@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -107,21 +107,46 @@ export const columns: ColumnDef<Payment>[] = [
         id: 'actions',
         enableHiding: false,
         cell: () => {
+            const [scheduleDialogOpen, setScheduleDialogOpen] = useState(false);
             return (
-                <div className="flex justify-end">
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" className="h-8 w-8 p-0">
-                                <span className="sr-only">Open menu</span>
-                                <MoreHorizontal />
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            <DropdownMenuItem className="cursor-pointer">Edit course</DropdownMenuItem>
-                            <DropdownMenuItem className="cursor-pointer text-red-500">Delete course</DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div>
+                <>
+                    <div className="flex justify-end">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" className="h-8 w-8 p-0">
+                                    <span className="sr-only">Open menu</span>
+                                    <MoreHorizontal />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                <DropdownMenuItem className="cursor-pointer">Edit Instructor</DropdownMenuItem>
+                                <DropdownMenuItem className="cursor-pointer" onClick={() => setScheduleDialogOpen(true)}>
+                                    View Schedule
+                                </DropdownMenuItem>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem className="cursor-pointer text-red-500">Delete Instructor</DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
+                    <Dialog open={scheduleDialogOpen} onOpenChange={setScheduleDialogOpen}>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Schedule</DialogTitle>
+                                <DialogDescription>View Instructor's Schedule</DialogDescription>
+                            </DialogHeader>
+                            <DialogFooter>
+                                {/* <DialogClose asChild> */}
+                                    <Button tabIndex={3} variant="outline" onClick={() => setScheduleDialogOpen(false)}>
+                                        Cancel
+                                    </Button>
+                                {/*</DialogClose>*/}
+                                <Button onClick={() => setScheduleDialogOpen(false)}>
+                                    Revert
+                                </Button>
+                            </DialogFooter>
+                        </DialogContent>
+                    </Dialog>
+                </>
             );
         },
     },

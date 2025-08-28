@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -24,77 +24,77 @@ import { useState } from 'react';
 
 const data: Payment[] = [
     {
-        code: 'ACCO 014',
-        name: 'Principles of Acco******',
-        unit: 3.0,
+        program: 'ACCO 014',
+        year: 'Principles of Acco******',
+        section: 3.0,
         instructor: '********, ******* **. *.',
     },
     {
-        code: 'COMP 001',
-        name: 'Introduction to Computing',
-        unit: 3.0,
+        program: 'COMP 001',
+        year: 'Introduction to Computing',
+        section: 3.0,
         instructor: 'NAVARRO, P**** D**** R****',
     },
     {
-        code: 'CWTS 001',
-        name: 'Civic Welfare Training Service 1',
-        unit: 3.0,
+        program: 'CWTS 001',
+        year: 'Civic Welfare Training Service 1',
+        section: 3.0,
         instructor: 'VILLANUEVA, J***** O.',
     },
     {
-        code: 'ELEC IT-FE1',
-        name: 'BSIT Free Elective 1',
-        unit: 3.0,
+        program: 'ELEC IT-FE1',
+        year: 'BSIT Free Elective 1',
+        section: 3.0,
         instructor: 'LLENARES, I** I.',
     },
     {
-        code: 'GEED 032',
-        name: 'Filipinolohiya at Pambansang Kaunlaran',
-        unit: 3.0,
+        program: 'GEED 032',
+        year: 'Filipinolohiya at Pambansang Kaunlaran',
+        section: 3.0,
         instructor: 'MORANO, S******* K**** D*****',
     },
     {
-        code: 'HRMA 001',
-        name: 'Principles of Organization and Management',
-        unit: 3.0,
+        program: 'HRMA 001',
+        year: 'Principles of Organization and Management',
+        section: 3.0,
         instructor: 'DELA CRUZ, M****** P******',
     },
     {
-        code: 'INTE 201',
-        name: 'Programming 3 (Structured Programming)',
-        unit: 3.0,
+        program: 'INTE 201',
+        year: 'Programming 3 (Structured Programming)',
+        section: 3.0,
         instructor: 'NAYRE, R***** A.',
     },
     {
-        code: 'PATHFIT 1',
-        name: 'Physical Activity Towards Health and Fitness 1',
-        unit: 2.0,
+        program: 'PATHFIT 1',
+        year: 'Physical Activity Towards Health and Fitness 1',
+        section: 2.0,
         instructor: 'DELOS SANTOS, J**** R.',
     },
 ];
-export type Payment = {
-    code: string;
-    name: string;
-    unit: number;
+export type Classes = {
+    program: string;
+    year: string;
+    section: number;
     instructor: string;
 };
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Classes>[] = [
     {
-        accessorKey: 'code',
-        header: 'Course Code',
-        cell: ({ row }) => <div className="capitalize">{row.getValue('code')}</div>,
+        accessorKey: 'program',
+        header: 'Program',
+        cell: ({ row }) => <div className="capitalize">{row.getValue('program')}</div>,
     },
     {
-        accessorKey: 'name',
-        header: 'Course Name',
-        cell: ({ row }) => <div className="capitalize">{row.getValue('name')}</div>,
+        accessorKey: 'year',
+        header: 'Year Level',
+        cell: ({ row }) => <div className="capitalize">{row.getValue('year')}</div>,
     },
     {
-        accessorKey: 'unit',
-        header: 'Units',
+        accessorKey: 'section',
+        header: 'Section',
         cell: ({ row }) => {
-            const value = row.getValue<number>('unit');
+            const value = row.getValue<number>('section');
             return <div>{value.toFixed(1)}</div>;
         },
     },
@@ -117,8 +117,10 @@ export const columns: ColumnDef<Payment>[] = [
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                            <DropdownMenuItem className="cursor-pointer">Edit course</DropdownMenuItem>
-                            <DropdownMenuItem className="cursor-pointer text-red-500">Delete course</DropdownMenuItem>
+                            <DropdownMenuItem className="cursor-pointer">Edit Class</DropdownMenuItem>
+                            <DropdownMenuItem className="cursor-pointer">View Schedule</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem className="cursor-pointer text-red-500">Delete Class</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
                 </div>
